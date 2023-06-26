@@ -4,10 +4,10 @@ services:
   - docker
 
 before_install: 
-  - docker build -t adamharms/react-test -f ./clinet/Dockerfile.dev ./client
+  - docker build -t adamharms/react-test -f ./clinet/Dockerfile.dev /client
 
 script:
-  - docker run -e CI=true adamharms/react-test npm test -- --coverage
+  - docker run -e CI=true adamharms/react-test npm test
 
 after_success: 
   - docker build -t adamharms/multi-client ./client
