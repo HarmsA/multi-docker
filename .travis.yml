@@ -11,10 +11,10 @@ script:
   - docker run -e CI=true adamharms/react-test npm test
 
 after_success:
-  - docker build -t adamharms/multi-client ./client
-  - docker build -t adamharms/multi-nginx ./nginx
-  - docker build -t adamharms/multi-server ./server
-  - docker build -t adamharms/multi-worker ./worker
+  - docker build -t harms2a/multi-client ./client
+  - docker build -t harms2a/multi-nginx ./nginx
+  - docker build -t harms2a/multi-server ./server
+  - docker build -t harms2a/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
