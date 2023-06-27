@@ -1,22 +1,23 @@
 sudo: required
 language: generic
+
 services:
   - docker
 
-before_install: 
+before_install:
   - docker build -t adamharms/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true adamharms/react-test npm test
 
-after_success: 
+after_success:
   - docker build -t adamharms/multi-client ./client
   - docker build -t adamharms/multi-nginx ./nginx
   - docker build -t adamharms/multi-server ./server
   - docker build -t adamharms/multi-worker ./worker
-  #log in to docker cli
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # take these images and push to docker hub
+  # Take those images and push them to docker hub
   - docker push harms2a/multi-client
   - docker push harms2a/multi-nginx
   - docker push harms2a/multi-server
