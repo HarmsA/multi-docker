@@ -22,3 +22,15 @@ after_success:
   - docker push harms2a/multi-nginx
   - docker push harms2a/multi-server
   - docker push harms2a/multi-worker
+
+deploy:
+  provider: 'elasticbeanstalk'
+  region: 'us-east-2'
+  app: 'Docker-multi'
+  env: 'Docker-multi-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-300276692915'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
