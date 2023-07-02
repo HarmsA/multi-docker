@@ -17,7 +17,7 @@ after_success:
   - docker build -t harms2a/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
+  # Take those images and push them to docker hubs
   - docker push harms2a/multi-client
   - docker push harms2a/multi-nginx
   - docker push harms2a/multi-server
